@@ -1,0 +1,15 @@
+# /etc/wireguard/wg0.conf  (SERVER)  -- EXAMPLE ONLY, do not use these keys
+[Interface]
+Address = 10.8.0.1/24
+ListenPort = 51820
+PrivateKey = <SERVER_PRIVATE_KEY>
+
+# Replace eth0 with your real network interface (see: ip route show default)
+PostUp   = iptables -I FORWARD 1 -i %i -j ACCEPT; iptables -I FORWARD 1 -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+
+# Client: my-laptop
+[Peer]
+PublicKey = <CLIENT_PUBLIC_KEY>
+PresharedKey = <OPTIONAL_PRESHARED_KEY>
+AllowedIPs = 10.8.0.2/32

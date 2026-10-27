@@ -1,0 +1,15 @@
+# Client profile  -- EXAMPLE ONLY, do not use these placeholders
+[Interface]
+PrivateKey = <CLIENT_PRIVATE_KEY>
+Address = 10.8.0.2/24
+DNS = 1.1.1.1
+# MTU = 1380          # uncomment if pages hang or load slowly
+
+[Peer]
+PublicKey = <SERVER_PUBLIC_KEY>
+PresharedKey = <OPTIONAL_PRESHARED_KEY>
+Endpoint = <SERVER_PUBLIC_IP>:51820
+# 0.0.0.0/0 sends ALL IPv4 traffic through the VPN (full tunnel).
+# Use 10.8.0.0/24 instead for "split tunnel" (only VPN-internal traffic).
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 25

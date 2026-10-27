@@ -1,0 +1,10 @@
+# Never commit secrets
+*.key
+*privatekey*
+*.conf
+!configs/*.conf.example
+clients/
+wg*.conf
+.env
+*.bak*
+.DS_Store
